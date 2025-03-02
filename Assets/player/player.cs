@@ -1,31 +1,57 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class player : MonoBehaviour
+public class Player : MonoBehaviour
 {
+    [SerializeField] private float powerUpDuration;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private float jumpForce;
     [SerializeField] private Camera playerCamera;
-    private Rigidbody playerRigidbody;
-    
-    private bool isOnGround = false;
+    [SerializeField] private Rigidbody rb;
+    private float multiply;
+    public bool SneakMode;
+    [SerializeField] public Enemy enemy;
+    private Coroutine powerUpCoroutine;
+
+    public Action OnPowerUpStart;
+    public Action OnPowerUpStop;
+
+    public void PickPowerUp()
+    {
+        if(powerUpCoroutine != null)
+        {
+            StopCoroutine(powerUpCoroutine);
+        }
+        powerUpCoroutine = StartCoroutine(StartPowerUp());
+    }
+
+    private IEnumerator StartPowerUp()
+    {
+        if(OnPowerUpStart != null)
+        {
+            OnPowerUpStart();
+        }
+        yield return new WaitForSeconds(powerUpDuration);
+        if(OnPowerUpStop != null)
+        {
+            OnPowerUpStop();
+        }
+    }
 
     private void Awake()
     {
-        playerRigidbody = GetComponent<Rigidbody>();
         HideAndLockCursor();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        // move (wasd), camera control
-        // playerMovementControl();
+        SneakMode = false;
+
         // Horizontal = left (a) [-] and right (d) [+]
         float horizontal = Input.GetAxis("Horizontal");
 
-        // Vertical = foward (w) [+] aand backward (s) [-]
+        // Vertical = foward (w) [+] and backward (s) [-]
         float vertical = Input.GetAxis("Vertical");
 
         Vector3 horizontalDirection = horizontal * playerCamera.transform.right;
@@ -33,46 +59,27 @@ public class player : MonoBehaviour
         horizontalDirection.y = 0;
         vericalDirection.y = 0;
 
-         //vector3 (x, y, z)
         Vector3 movementDirection = horizontalDirection + vericalDirection;
 
-        playerRigidbody.velocity = movementDirection * moveSpeed * Time.fixedDeltaTime;
-
-        // Debug.Log("Horizontal: " + horizontal);
-        // Debug.Log("Vartical: " + vertical);
-
+        multiply = 1.0f;
         // running using LeftShift
         if(Input.GetKey(KeyCode.LeftShift)){
-            playerRigidbody.velocity = movementDirection * 2 * moveSpeed * Time.fixedDeltaTime;
+            multiply = 2.0f;
         }
 
         // sneak using LeftControl
         if(Input.GetKey(KeyCode.LeftControl)){
-            playerRigidbody.velocity = movementDirection * 0.5f * moveSpeed * Time.fixedDeltaTime;
+            multiply = 0.7f;
+            SneakMode = true;
         }
 
-        jumpInput();
-   
+        rb.velocity = movementDirection * moveSpeed * multiply * Time.deltaTime;
     }
 
     private void HideAndLockCursor()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    private void jumpInput()
-    {
-        // Slow Falling?
-        if(Input.GetButtonDown("Jump") && isOnGround){
-            playerRigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isOnGround = false;
-        }     
-    }
-
-    private void OnCollisionStay()
-    {
-        isOnGround = true;
     }
 
 }
