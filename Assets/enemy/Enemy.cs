@@ -13,13 +13,20 @@ public class Enemy : MonoBehaviour
     [SerializeField] public NavMeshAgent NavMeshAgent;
     [SerializeField] public float ChaseDistance;
     [SerializeField] public Player Player;
+    [SerializeField] public Animator Animator;
     private float currChaseDistance;
+    [SerializeField] public AudioSource audioSource;
 
     public void SwitchState(BaseState state)
     {
         currentState.ExitState(this);
         currentState = state;
         currentState.EnterState(this);
+    }
+
+    public void Dead()
+    {
+        Destroy(gameObject);
     }
     private void Awake()
     {
@@ -50,6 +57,11 @@ public class Enemy : MonoBehaviour
         {
             currentState.UpdateState(this);
         }
+
+        if(Time.timeScale == 0)
+        {
+            audioSource.Pause();
+        }
     }
 
     private void StartRetreating()
@@ -60,5 +72,16 @@ public class Enemy : MonoBehaviour
     private void StopRetreating()
     {
         SwitchState(PatrolState);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(currentState != RetreatState)
+        {
+            if(collision.gameObject.CompareTag("Player"))
+            {
+                collision.gameObject.GetComponent<Player>().Dead();
+            }
+        }
     }
 }   
