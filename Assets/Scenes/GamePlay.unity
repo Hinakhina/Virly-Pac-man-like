@@ -501,7 +501,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerUpDuration: 5
-  moveSpeed: 500
+  moveSpeed: 250
   playerCamera: {fileID: 963194227}
   rb: {fileID: 56420206}
   health: 3
