@@ -87,12 +87,12 @@ public class Player : MonoBehaviour
         multiply = 1.0f;
         // running using LeftShift
         if(Input.GetKey(KeyCode.LeftShift)){
-            multiply = 2.0f;
+            multiply = 1.5f;
         }
 
         // sneak using LeftControl
         if(Input.GetKey(KeyCode.LeftControl)){
-            multiply = 0.7f;
+            multiply = 0.5f;
             SneakMode = true;
         }
 
