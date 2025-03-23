@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] public Animator Animator;
     private float currChaseDistance;
     [SerializeField] public AudioSource audioSource;
+    private bool audioPaused;
 
     public void SwitchState(BaseState state)
     {
@@ -61,6 +62,12 @@ public class Enemy : MonoBehaviour
         if(Time.timeScale == 0)
         {
             audioSource.Pause();
+            audioPaused = true;
+        }
+        else if (Time.timeScale == 1 && audioPaused)
+        {
+            audioSource.UnPause();
+            audioPaused = false;
         }
     }
 
@@ -80,7 +87,10 @@ public class Enemy : MonoBehaviour
         {
             if(collision.gameObject.CompareTag("Player"))
             {
-                collision.gameObject.GetComponent<Player>().Dead();
+                if(collision.gameObject.GetComponent<Player>().isInvinsible != true)
+                {
+                    collision.gameObject.GetComponent<Player>().Dead();
+                }
             }
         }
     }

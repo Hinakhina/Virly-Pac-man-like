@@ -15,7 +15,7 @@ public class ChaseState : BaseState
         {
             enemy.NavMeshAgent.destination = enemy.Player.transform.position;
 
-            if(Vector3.Distance(enemy.transform.position, enemy.Player.transform.position) > enemy.ChaseDistance)
+            if(Vector3.Distance(enemy.transform.position, enemy.Player.transform.position) > enemy.ChaseDistance || enemy.Player.isInvinsible == true)
             {
                 enemy.SwitchState(enemy.PatrolState);
             }

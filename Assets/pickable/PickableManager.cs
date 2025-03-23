@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PickableManager : MonoBehaviour
 {
@@ -40,16 +41,17 @@ public class PickableManager : MonoBehaviour
         }   
         if(pickable.PickableType == PickableType.PowerUp)
         {
-            AudioManager.Instance.PlaySFX("power");
+            AudioManager.Instance.PlaySFX1("power");
             Player?.PickPowerUp();
         }
         else{
-            AudioManager.Instance.PlaySFX("coin");
+            AudioManager.Instance.PlaySFX1("coin");
         }
         // Debug.Log("Pickable List: " + pickableList.Count);
         if(pickableList.Count <= 0)
         {
             Debug.Log("Win");
+            SceneManager.LoadScene("WinScene");
         }
     }
 

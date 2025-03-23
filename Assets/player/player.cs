@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System;
 using TMPro;
 
@@ -14,12 +15,21 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform respawnPoint;
     private float multiply;
     public bool SneakMode;
-    [SerializeField] public Enemy enemy;
-    private Coroutine powerUpCoroutine;
+    [HideInInspector] public Enemy enemy;
     [SerializeField] private TMP_Text healthText;
+    [SerializeField] private TMP_Text enemyCountText;
+    [SerializeField] private Animator animator;
+    [SerializeField] KilledEnemyButton killedEnemyButton;
+    private int enemyCount;
 
+
+    private Coroutine powerUpCoroutine;
     public Action OnPowerUpStart;
     public Action OnPowerUpStop;
+
+    private Coroutine isInvinsibleCoroutine;
+    public bool isInvinsible = false;
+
     private bool isPowerUpActive = false;
 
     public void PickPowerUp()
@@ -53,6 +63,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        InitEnemyList();
         UpdateUI();
     }
 
@@ -101,6 +112,13 @@ public class Player : MonoBehaviour
             if(collision.gameObject.CompareTag("Enemy"))
             {
                 collision.gameObject.GetComponent<Enemy>().Dead();
+                enemyCount -= 1;
+                UpdateUI();
+                if(enemyCount <= 0)
+                {
+                    killedEnemyButton.ScreenActive();
+                }
+
             }
         }
     }
@@ -108,20 +126,41 @@ public class Player : MonoBehaviour
     public void Dead()
     {
         health -= 1;
+        isInvinsibleCoroutine = StartCoroutine(StartInvinsible());
         if(health > 0){
             transform.position = respawnPoint.position;
         }
         else{
             health = 0;
             Debug.Log("Lose");
-            Time.timeScale = 0;
+            SceneManager.LoadScene("LoseScene");
         }
         UpdateUI();
+    }
+
+    public IEnumerator StartInvinsible()
+    {
+        isInvinsible = true;
+        animator.SetBool("isInvinsible", isInvinsible);
+        yield return new WaitForSeconds(5);
+        isInvinsible = false;
+        animator.SetBool("isInvinsible", isInvinsible);
     }
 
     public void UpdateUI()
     {
         healthText.text = "Health: " + health;
+        enemyCountText.text = "Enemy: " + enemyCount;
+    }
+
+    private void InitEnemyList()
+    {
+        Enemy[] enemyList = GameObject.FindObjectsOfType<Enemy>();
+        for (int i = 0; i < enemyList.Length; i++)
+        {
+            enemyCount += 1;
+            
+        }
     }
 
 }
