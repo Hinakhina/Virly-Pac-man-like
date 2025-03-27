@@ -18,7 +18,7 @@ public class PatrolState : BaseState
     }
     public void UpdateState(Enemy enemy)
     {
-        if(Vector3.Distance(enemy.transform.position, enemy.Player.transform.position) < enemy.ChaseDistance && enemy.Player.isInvinsible != true)
+        if(Vector3.Distance(enemy.transform.position, enemy.Player.transform.position) < enemy.ChaseDistance && enemy.Player.isRespawn != true)
         {
             enemy.SwitchState(enemy.ChaseState);
         }

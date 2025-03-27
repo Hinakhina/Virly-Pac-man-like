@@ -8,6 +8,7 @@ public class PickableManager : MonoBehaviour
     [SerializeField] Player Player;
     private List<Pickable> pickableList = new List<Pickable>();
     [SerializeField] public ScoreManager scoreManager;
+    [SerializeField] public ButtonManager ButtonManager;
 
     private int point;
     void Start()
@@ -41,17 +42,16 @@ public class PickableManager : MonoBehaviour
         }   
         if(pickable.PickableType == PickableType.PowerUp)
         {
-            AudioManager.Instance.PlaySFX1("power");
             Player?.PickPowerUp();
         }
         else{
-            AudioManager.Instance.PlaySFX1("coin");
+            AudioManager.Instance.PlaySFX1("orb");
         }
         // Debug.Log("Pickable List: " + pickableList.Count);
         if(pickableList.Count <= 0)
         {
             Debug.Log("Win");
-            SceneManager.LoadScene("WinScene");
+            ButtonManager.winScreen();
         }
     }
 
