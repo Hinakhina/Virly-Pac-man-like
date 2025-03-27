@@ -173,8 +173,8 @@ public class Player : MonoBehaviour
 
     public void UpdateUI()
     {
-        healthText.text = "Health: " + health;
-        enemyCountText.text = "Enemy: " + enemyCount;
+        healthText.text = ": " + health;
+        enemyCountText.text = ": " + enemyCount;
     }
 
     private void InitEnemyList()
