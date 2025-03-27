@@ -434,27 +434,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicSounds:
   - name: bgm
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: a7a6b723ff5f03b4c8670fadff9b8ab7, type: 3}
+  - name: intro
+    clip: {fileID: 8300000, guid: 6a1272670408f426e9a8f7cf91cc0113, type: 3}
+  - name: win
+    clip: {fileID: 8300000, guid: 311a9cf6d071140b6b8f78d56e67e076, type: 3}
+  - name: lose
+    clip: {fileID: 8300000, guid: 233c32629021a4d4c8ad873974338b8f, type: 3}
   sfxSounds1:
   - name: coin
-    clip: {fileID: 8300000, guid: 6cb866f32037ed64ebca47c115f9694a, type: 3}
+    clip: {fileID: 8300000, guid: 08b4470b01b1874428c09c65055c7ed2, type: 3}
   - name: power
-    clip: {fileID: 8300000, guid: 010a1986aef579044b646b8d3b8b0854, type: 3}
+    clip: {fileID: 8300000, guid: b1fffbcc757545844b63e7910bd077e4, type: 3}
   - name: dead
-    clip: {fileID: 8300000, guid: 010a1986aef579044b646b8d3b8b0854, type: 3}
-  - name: button
-    clip: {fileID: 8300000, guid: 010a1986aef579044b646b8d3b8b0854, type: 3}
+    clip: {fileID: 8300000, guid: 0360088d05c81be4b88cad1381c615e7, type: 3}
   sfxSounds2:
   - name: chased
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 4747ceb88f20f2440bf8c54220ba0599, type: 3}
   - name: retreat
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: ae49fb508f3ba2044a039a351f2e456a, type: 3}
   - name: kill
-    clip: {fileID: 0}
-  - name: win
-    clip: {fileID: 0}
-  - name: lose
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: bd3fb203296bef048812f81fdec1131c, type: 3}
+  - name: button
+    clip: {fileID: 8300000, guid: 2fa293addf1d95a4cba119a2a51a2941, type: 3}
   loopSounds: []
   musicSource: {fileID: 3245253913626940129}
   sfxSource1: {fileID: 6207300573727194614}
@@ -504,7 +506,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 0
   Mute: 0
