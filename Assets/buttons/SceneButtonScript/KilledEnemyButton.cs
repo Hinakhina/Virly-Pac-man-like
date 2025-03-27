@@ -18,6 +18,7 @@ public class KilledEnemyButton : MonoBehaviour
     }
 
     public void ContinueButtonClick(){
+        AudioManager.Instance.PlaySFX2("button");
         Time.timeScale = 1;
         killedEnemyScreen.SetActive(false);
         PauseButton.SetActive(true);

@@ -21,6 +21,7 @@ public class PauseButton : MonoBehaviour
     }
 
     public void PauseButtonClick(){
+        AudioManager.Instance.PlaySFX2("button");
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
@@ -28,6 +29,7 @@ public class PauseButton : MonoBehaviour
     }
 
     public void ContinueButtonClick(){
+        AudioManager.Instance.PlaySFX2("button");
         Time.timeScale = 1;
         pauseScreen.SetActive(false);
         Cursor.lockState = CursorLockMode.Locked;

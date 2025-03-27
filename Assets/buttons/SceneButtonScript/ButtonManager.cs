@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-
     public void Awake()
     {
         Cursor.lockState = CursorLockMode.Confined;
@@ -14,17 +13,34 @@ public class ButtonManager : MonoBehaviour
 
     public void retryScreen()
     {
-        SceneManager.LoadScene("GamePlay");
+        ButtonAudioManager.Instance.buttonAudio();
+        SceneManager.LoadScene("AlchemistLevel");
+        ButtonAudioManager.Instance.retryScreenAudio();
     }
 
     public void exitScreen()
     {
+        ButtonAudioManager.Instance.buttonAudio();
         SceneManager.LoadScene("MainMenu");
+        AudioManager.Instance.PlayMusic("intro");
     }
 
 
     public void exitGame()
     {
+        ButtonAudioManager.Instance.buttonAudio();
         Application.Quit();
+    }
+
+    public void loseScreen()
+    {
+        SceneManager.LoadScene("LoseScene");
+        ButtonAudioManager.Instance.loseScreenAudio();
+    }
+
+    public void winScreen()
+    {
+        SceneManager.LoadScene("WinScene");
+        ButtonAudioManager.Instance.winScreenAudio();
     }
 }
