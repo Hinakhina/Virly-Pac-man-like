@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GamePlay.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
+    path: Assets/Scenes/AlchemistLevel.unity
+    guid: 647aaa43c53d88546a982a33d04767a8
+  - enabled: 1
     path: Assets/Scenes/LoseScene.unity
     guid: 6691e36c01c325549b0098ecee14fd85
   - enabled: 1
