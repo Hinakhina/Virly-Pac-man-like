@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private Rigidbody rb;
     [SerializeField] private int health;
-    [SerializeField] private Transform respawnPoint;
+    [SerializeField] private Transform RespawnPoint;
     private float multiply;
     public bool SneakMode;
     [HideInInspector] public Enemy enemy;
@@ -20,6 +20,11 @@ public class Player : MonoBehaviour
     [SerializeField] private TMP_Text enemyCountText;
     [SerializeField] private Animator animator;
     [SerializeField] KilledEnemyButton killedEnemyButton;
+    [SerializeField] ButtonManager ButtonManager;
+    [SerializeField] private float rotationTime = 0.1f;
+    private float rotationVelocity;
+    private float velocityAnim;
+    
     private int enemyCount;
 
 
@@ -27,8 +32,8 @@ public class Player : MonoBehaviour
     public Action OnPowerUpStart;
     public Action OnPowerUpStop;
 
-    private Coroutine isInvinsibleCoroutine;
-    public bool isInvinsible = false;
+    private Coroutine isRespawnCoroutine;
+    public bool isRespawn = false;
 
     private bool isPowerUpActive = false;
 
@@ -44,12 +49,14 @@ public class Player : MonoBehaviour
     private IEnumerator StartPowerUp()
     {
         isPowerUpActive = true;
+        AudioManager.Instance.PlaySFX1("powerUp");
         if(OnPowerUpStart != null)
         {
             OnPowerUpStart();
         }
         yield return new WaitForSeconds(powerUpDuration);
         isPowerUpActive = false;
+        AudioManager.Instance.PlaySFX1("powerDown");
         if(OnPowerUpStop != null)
         {
             OnPowerUpStop();
@@ -63,6 +70,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+
         InitEnemyList();
         UpdateUI();
     }
@@ -77,17 +85,26 @@ public class Player : MonoBehaviour
         // Vertical = foward (w) [+] and backward (s) [-]
         float vertical = Input.GetAxis("Vertical");
 
-        Vector3 horizontalDirection = horizontal * playerCamera.transform.right;
-        Vector3 vericalDirection = vertical * playerCamera.transform.forward;
-        horizontalDirection.y = 0;
-        vericalDirection.y = 0;
-
-        Vector3 movementDirection = horizontalDirection + vericalDirection;
+        Vector3 movementDirection = new Vector3(horizontal, 0, vertical);
+ 
+        if (movementDirection.magnitude >= 0.1)
+        {
+            float rotationAngle = Mathf.Atan2(movementDirection.x, movementDirection.z) * Mathf.Rad2Deg + playerCamera.transform.eulerAngles.y;
+            float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, rotationAngle, ref rotationVelocity, rotationTime);
+            transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
+            movementDirection = Quaternion.Euler(0f, rotationAngle, 0f) * Vector3.forward;
+        }
+        
 
         multiply = 1.0f;
         // running using LeftShift
         if(Input.GetKey(KeyCode.LeftShift)){
             multiply = 2.0f;
+            animator.SetBool("isRun", true);
+        }
+        else if(!Input.GetKey(KeyCode.LeftShift)){
+            animator.SetBool("isRun", false);
+
         }
 
         // sneak using LeftControl
@@ -97,6 +114,9 @@ public class Player : MonoBehaviour
         }
 
         rb.velocity = movementDirection * moveSpeed * multiply * Time.deltaTime;
+
+        velocityAnim = rb.velocity.magnitude;
+        animator.SetFloat("Velocity", velocityAnim);
     }
 
     private void HideAndLockCursor()
@@ -111,8 +131,11 @@ public class Player : MonoBehaviour
         {
             if(collision.gameObject.CompareTag("Enemy"))
             {
+                animator.SetTrigger("isAttack");
+                AudioManager.Instance.PlaySFX2("kill");
                 collision.gameObject.GetComponent<Enemy>().Dead();
                 enemyCount -= 1;
+                animator.ResetTrigger("isAttack");
                 UpdateUI();
                 if(enemyCount <= 0)
                 {
@@ -126,25 +149,26 @@ public class Player : MonoBehaviour
     public void Dead()
     {
         health -= 1;
-        isInvinsibleCoroutine = StartCoroutine(StartInvinsible());
+        AudioManager.Instance.PlaySFX1("dead");
         if(health > 0){
-            transform.position = respawnPoint.position;
+            isRespawnCoroutine = StartCoroutine(StartRespawn());
         }
         else{
             health = 0;
             Debug.Log("Lose");
-            SceneManager.LoadScene("LoseScene");
+            ButtonManager.loseScreen();
         }
         UpdateUI();
     }
 
-    public IEnumerator StartInvinsible()
+    public IEnumerator StartRespawn()
     {
-        isInvinsible = true;
-        animator.SetBool("isInvinsible", isInvinsible);
-        yield return new WaitForSeconds(5);
-        isInvinsible = false;
-        animator.SetBool("isInvinsible", isInvinsible);
+        isRespawn = true;
+        animator.SetBool("isDead", isRespawn);
+        yield return new WaitForSeconds(1);
+        transform.position = RespawnPoint.position;
+        isRespawn = false;
+        animator.SetBool("isDead", isRespawn);
     }
 
     public void UpdateUI()
