@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
         {
             if(collision.gameObject.CompareTag("Player"))
             {
-                if(collision.gameObject.GetComponent<Player>().isInvinsible != true)
+                if(collision.gameObject.GetComponent<Player>().isRespawn != true)
                 {
                     collision.gameObject.GetComponent<Player>().Dead();
                 }
