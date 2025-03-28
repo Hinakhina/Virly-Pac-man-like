@@ -149,7 +149,7 @@ public class Player : MonoBehaviour
     public void Dead()
     {
         health -= 1;
-        AudioManager.Instance.PlaySFX1("dead");
+        AudioManager.Instance.PlaySFX2("dead");
         if(health > 0){
             isRespawnCoroutine = StartCoroutine(StartRespawn());
         }
