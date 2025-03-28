@@ -46,4 +46,9 @@ public class ButtonAudioManager : MonoBehaviour
     {
         AudioManager.Instance.PlayMusic("win");
     }
+
+    public void hoverButtonAudio()
+    {
+        AudioManager.Instance.PlaySFX1("hover");
+    }
 }

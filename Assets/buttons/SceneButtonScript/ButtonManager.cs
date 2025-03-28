@@ -43,4 +43,9 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("WinScene");
         ButtonAudioManager.Instance.winScreenAudio();
     }
+
+    public void hoverButton()
+    {
+        ButtonAudioManager.Instance.hoverButtonAudio();
+    }
 }

@@ -448,6 +448,8 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: b1fffbcc757545844b63e7910bd077e4, type: 3}
   - name: dead
     clip: {fileID: 8300000, guid: 0360088d05c81be4b88cad1381c615e7, type: 3}
+  - name: hover
+    clip: {fileID: 8300000, guid: 059f99aa227bc09489cc03e8fe29bbb0, type: 3}
   sfxSounds2:
   - name: chased
     clip: {fileID: 8300000, guid: 4747ceb88f20f2440bf8c54220ba0599, type: 3}
