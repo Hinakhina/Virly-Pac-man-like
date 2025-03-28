@@ -561,6 +561,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 215632414999219534, guid: cfad1abe433e18941a794fdce6b58b3b, type: 3}
+      propertyPath: sfxSounds1.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 215632414999219534, guid: cfad1abe433e18941a794fdce6b58b3b, type: 3}
+      propertyPath: sfxSounds1.Array.data[0].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: e41a7753d7ea7334b8f218aa80e23bc1, type: 3}
+    - target: {fileID: 215632414999219534, guid: cfad1abe433e18941a794fdce6b58b3b, type: 3}
+      propertyPath: sfxSounds1.Array.data[0].name
+      value: orb
+      objectReference: {fileID: 0}
+    - target: {fileID: 215632414999219534, guid: cfad1abe433e18941a794fdce6b58b3b, type: 3}
+      propertyPath: sfxSounds1.Array.data[1].name
+      value: powerUp
+      objectReference: {fileID: 0}
+    - target: {fileID: 215632414999219534, guid: cfad1abe433e18941a794fdce6b58b3b, type: 3}
+      propertyPath: sfxSounds1.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 733fd066cd3ba08469eea1d0a212719d, type: 3}
+    - target: {fileID: 215632414999219534, guid: cfad1abe433e18941a794fdce6b58b3b, type: 3}
+      propertyPath: sfxSounds1.Array.data[2].name
+      value: powerDown
+      objectReference: {fileID: 0}
+    - target: {fileID: 215632414999219534, guid: cfad1abe433e18941a794fdce6b58b3b, type: 3}
+      propertyPath: sfxSounds1.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0360088d05c81be4b88cad1381c615e7, type: 3}
+    - target: {fileID: 215632414999219534, guid: cfad1abe433e18941a794fdce6b58b3b, type: 3}
+      propertyPath: sfxSounds1.Array.data[3].name
+      value: dead
+      objectReference: {fileID: 0}
+    - target: {fileID: 215632414999219534, guid: cfad1abe433e18941a794fdce6b58b3b, type: 3}
+      propertyPath: sfxSounds1.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 059f99aa227bc09489cc03e8fe29bbb0, type: 3}
+    - target: {fileID: 215632414999219534, guid: cfad1abe433e18941a794fdce6b58b3b, type: 3}
+      propertyPath: sfxSounds1.Array.data[4].name
+      value: hover
+      objectReference: {fileID: 0}
     - target: {fileID: 1128413724790341988, guid: cfad1abe433e18941a794fdce6b58b3b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1078.4092
