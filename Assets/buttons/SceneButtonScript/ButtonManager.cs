@@ -5,12 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
-    public void Awake()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-    }
-
     public void retryScreen()
     {
         ButtonAudioManager.Instance.buttonAudio();
@@ -20,6 +14,7 @@ public class ButtonManager : MonoBehaviour
 
     public void exitScreen()
     {
+        cursorLock();
         ButtonAudioManager.Instance.buttonAudio();
         SceneManager.LoadScene("MainMenu");
         AudioManager.Instance.PlayMusic("intro");
@@ -34,12 +29,14 @@ public class ButtonManager : MonoBehaviour
 
     public void loseScreen()
     {
+        cursorLock();
         SceneManager.LoadScene("LoseScene");
         ButtonAudioManager.Instance.loseScreenAudio();
     }
 
     public void winScreen()
     {
+        cursorLock();
         SceneManager.LoadScene("WinScene");
         ButtonAudioManager.Instance.winScreenAudio();
     }
@@ -47,5 +44,11 @@ public class ButtonManager : MonoBehaviour
     public void hoverButton()
     {
         ButtonAudioManager.Instance.hoverButtonAudio();
+    }
+
+    public void cursorLock()
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 }

@@ -31,7 +31,8 @@ public class PatrolState : BaseState
         }
         else
         {
-            if(Vector3.Distance(destination, enemy.transform.position) <= 0.1)
+            float distance = Vector3.Distance(destination, enemy.transform.position);
+            if(distance <= 0.17)
             {
                 isMoving = false;
             }
