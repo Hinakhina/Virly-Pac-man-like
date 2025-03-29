@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
 
     public void Dead()
     {
+        Player.enemyCount = Player.enemyCount - 1;
         Destroy(gameObject);
     }
     private void Awake()

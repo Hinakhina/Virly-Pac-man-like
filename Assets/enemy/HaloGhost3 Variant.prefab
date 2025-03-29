@@ -1,0 +1,120 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8514127952016108692
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4763992128455776098, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6431726576987753757, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: Waypoints.Array.size
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 8496860054583212242, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 87108936e3e8004479b2e6dd3a97ec56, type: 3}
+    - target: {fileID: 9178077627458089367, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077627554725593, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077627669320637, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077627864930273, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628041218274, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628471612979, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274502, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274502, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274502, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274502, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274502, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274502, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274502, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274502, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274502, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274502, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274503, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274503, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Constraints
+      value: 96
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274505, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Name
+      value: HaloGhost3 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628665274505, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077628757068182, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077629219351898, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178077629517703895, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 9178077628665274503, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c2e8b4db3ea82924092c778f4bee81df, type: 3}

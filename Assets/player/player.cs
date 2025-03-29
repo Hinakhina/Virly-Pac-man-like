@@ -21,11 +21,11 @@ public class Player : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] KilledEnemyButton killedEnemyButton;
     [SerializeField] ButtonManager ButtonManager;
-    [SerializeField] private float rotationTime = 0.1f;
+    private float rotationTime = 0.1f;
     private float rotationVelocity;
     private float velocityAnim;
     
-    private int enemyCount;
+    [HideInInspector] public int enemyCount;
 
 
     private Coroutine powerUpCoroutine;
@@ -96,7 +96,6 @@ public class Player : MonoBehaviour
         }
         
 
-        multiply = 1.0f;
         // running using LeftShift
         if(Input.GetKey(KeyCode.LeftShift)){
             multiply = 2.0f;
@@ -111,6 +110,12 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.LeftControl)){
             multiply = 0.7f;
             SneakMode = true;
+        }
+
+        if(!Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.LeftShift))
+        {
+            multiply = 1.0f;
+
         }
 
         rb.velocity = movementDirection * moveSpeed * multiply * Time.deltaTime;
@@ -131,17 +136,16 @@ public class Player : MonoBehaviour
         {
             if(collision.gameObject.CompareTag("Enemy"))
             {
-                animator.SetTrigger("isAttack");
-                AudioManager.Instance.PlaySFX2("kill");
+                Debug.Log("Killed Ghost...");
+                animator.SetBool("isAttack", true);
                 collision.gameObject.GetComponent<Enemy>().Dead();
-                enemyCount -= 1;
-                animator.ResetTrigger("isAttack");
+                animator.SetBool("isAttack", false);
+                AudioManager.Instance.PlaySFX2("kill");
                 UpdateUI();
                 if(enemyCount <= 0)
                 {
                     killedEnemyButton.ScreenActive();
                 }
-
             }
         }
     }
